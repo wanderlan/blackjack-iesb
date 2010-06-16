@@ -9,16 +9,14 @@
 //
 //
 
-
-
-
 public class Integrante extends BlackJack {
 	public Carta mao;
+
 	public void pedir() {
-	
+
 	}
-	
+
 	public void ficar() {
-	
+
 	}
 }
