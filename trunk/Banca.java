@@ -18,9 +18,8 @@ public class Banca extends Integrante {
 		}
   }
 
-	public void darProximaCarta() {
-		for(int j=0; j<jogadores.length; j++)
-			jogadores[j].getMao().add(monte.getCarta());
+	public Carta darProximaCarta() {
+		return monte.getCarta();
 	}
 
 	public void pegarProximaCarta() {
@@ -33,12 +32,14 @@ public class Banca extends Integrante {
 	}
 
 	public void setJogadores(Jogador[] jogadores) {
+		for(int i=0; i<jogadores.length; i++)
+			jogadores[i].setBanca(this);
 		this.jogadores = jogadores;
 	}
 
 	public void perguntarAosJogadores() {
 		for(int j=0; j<jogadores.length; j++)
-			jogadores[j].limparMao();
+			jogadores[j].fazerJogada();
 	}
 
 	public void completarJogo() {
