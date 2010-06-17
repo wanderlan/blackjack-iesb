@@ -2,6 +2,12 @@ public class Jogador extends Integrante {
 	private double aposta;
 	private double total;
 	private Mao mao;
+	private InteracaoJogador ui;
+
+	public Jogador(InteracaoJogador ui) {
+		super();
+		this.ui = ui;
+	}
 
 	public Mao getMao() {
 		return mao;
@@ -10,11 +16,15 @@ public class Jogador extends Integrante {
 	public void setMao(Mao mao) {
 		this.mao = mao;
 	}
-
-	public Jogador() {
-		super();
+	
+	public void limparMao(){
+		mao.clear();
 	}
 
+	public void fazerJogada(){
+		ui.perguntarJogador();
+	}
+	
 	public double getAposta() {
 		return aposta;
 	}
