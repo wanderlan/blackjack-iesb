@@ -31,8 +31,8 @@ public class Jogador extends Integrante {
 		mao.clear();
 	}
 
-	public void fazerJogada(){
-		ui.fazerJogada(this);
+	public char fazerJogada(){
+		return ui.fazerJogada(this);
 	}
 	
 	public double getAposta() {

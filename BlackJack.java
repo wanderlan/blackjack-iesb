@@ -5,18 +5,33 @@ public class BlackJack implements InteracaoJogador{
 	public static int numJogadores=1;
 	public static BlackJack bj = new BlackJack();
 	
-	public void fazerJogada(Jogador jogador){
+	public char fazerJogada(Jogador jogador){
 		System.out.println("Opções do Jogador " + jogador.getId());
 		System.out.println("(P)edir\n(F)icar\n(D)ividir\n(S)eguro\nF(i)nalizar\n");
+		char c = 'E'; // erro 
 		try{
-			char c = (char)System.in.read();
-			switch (c) {
-		  	case 'p': case 'P' : 
-		  		System.out.println(jogador.pedirCarta().toString());
-		  		
-		  		
+			c = Character.toUpperCase((char)System.in.read());
+			switch(c){
+		  	case 'P': 
+		  		System.out.println("Nova carta: " + jogador.pedirCarta().toString());
+		  		System.out.println("Valor da mão: " + jogador.getMao().getValor());
+		  		break;
+		  	case 'F':
+		  		System.out.println("Valor da mão: " + jogador.getMao().getValor());
+		  		break;		  		
+		  	case 'D':
+		  		break;
+		  	case 'S':
+		  		break;
+		  	case 'I':
+		  		System.out.println("Obrigado por participar Jogador: " + jogador.getId());
+		  		System.out.println("Tome seu dinheiro R$" + jogador.getTotal());
+		  		break;
 			}
-		}catch(IOException e){e.printStackTrace();}
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		return c;
 	}
 	
 	public static void main(String[] args) {
@@ -26,6 +41,5 @@ public class BlackJack implements InteracaoJogador{
     
     Banca banca = new Banca();
     banca.setJogadores(jogadores);
- 
-	}
+ 	}
 }
