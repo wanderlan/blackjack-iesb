@@ -1,6 +1,5 @@
 public class Banca extends Integrante {
 	private Monte monte = new Monte();
-	private Mao mao;
 	private Jogador jogadores[]; 
 	
 	public void darCartas() {
