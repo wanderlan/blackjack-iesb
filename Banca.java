@@ -2,6 +2,12 @@ public class Banca extends Integrante {
 	private Monte monte = new Monte();
 	private Jogador jogadores[]; 
 	
+  public void iniciarJogada(){
+  	mao.clear();
+		for(int j=0; j<jogadores.length; j++)
+			jogadores[j].limparMao();
+  }
+  
 	public void darCartas() {
 		monte.embaralhar();
 		mao.add(monte.getCarta());
@@ -18,7 +24,8 @@ public class Banca extends Integrante {
 	}
 
 	public void pegarProximaCarta() {
-		mao.add(monte.getCarta());
+		if(mao.getValor() < 17) 
+			mao.add(monte.getCarta());
 	}
 
 	public Jogador[] getJogadores() {
@@ -29,8 +36,9 @@ public class Banca extends Integrante {
 		this.jogadores = jogadores;
 	}
 
-	public void perguntarAoJogador() {
-
+	public void perguntarAosJogadores() {
+		for(int j=0; j<jogadores.length; j++)
+			jogadores[j].limparMao();
 	}
 
 	public void completarJogo() {
