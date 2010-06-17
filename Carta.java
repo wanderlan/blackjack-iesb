@@ -15,4 +15,8 @@ public class Carta {
 		this.naipe = naipe;
 		this.valor = valor;
 	}
+	
+	public String toString(){
+		return valor.toString() + " de " + naipe.toString();
+	}
 }

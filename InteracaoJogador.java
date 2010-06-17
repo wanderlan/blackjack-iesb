@@ -1,3 +1,3 @@
 public interface InteracaoJogador {
-	public void perguntarJogador();
+	public void fazerJogada(Jogador jogador);
 }

@@ -1,12 +1,18 @@
 public class Jogador extends Integrante {
 	private double aposta;
 	private double total;
-	private Mao mao;
 	private InteracaoJogador ui;
+	private int id;
+	private Banca banca;
 
-	public Jogador(InteracaoJogador ui) {
+	public Jogador(int id, InteracaoJogador ui) {
 		super();
 		this.ui = ui;
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public Mao getMao() {
@@ -17,12 +23,16 @@ public class Jogador extends Integrante {
 		this.mao = mao;
 	}
 	
+	public void setBanca(Banca banca){
+		this.banca = banca;
+	}
+	
 	public void limparMao(){
 		mao.clear();
 	}
 
 	public void fazerJogada(){
-		ui.perguntarJogador();
+		ui.fazerJogada(this);
 	}
 	
 	public double getAposta() {
@@ -39,6 +49,12 @@ public class Jogador extends Integrante {
 
 	public void setTotal(double total) {
 		this.total = total;
+	}
+
+	public Carta pedirCarta() {
+		Carta c = banca.darProximaCarta();
+		mao.add(c);
+		return c;
 	}
 
 	public void dividir() {
