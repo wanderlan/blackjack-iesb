@@ -1,6 +1,15 @@
 public class Jogador extends Integrante {
 	private double aposta;
 	private double total;
+	private Mao mao;
+
+	public Mao getMao() {
+		return mao;
+	}
+
+	public void setMao(Mao mao) {
+		this.mao = mao;
+	}
 
 	public Jogador() {
 		super();

@@ -10,4 +10,8 @@ public enum Valor {
 	public String toString(){
 		return Integer.toString(this.valor);
 	}
+	
+	public int getValor(){
+		return this.valor;
+	}
 }
