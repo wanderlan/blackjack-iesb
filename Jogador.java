@@ -41,6 +41,7 @@ public class Jogador extends Integrante {
 
 	public void setAposta(double aposta) {
 		this.aposta = aposta;
+		total += aposta;
 	}
 
 	public double getTotal() {
