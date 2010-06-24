@@ -56,10 +56,17 @@ public class BlackJack implements InteracaoJogador{
 	
 	public static void main(String[] args) {
     Jogador jogadores[] = new Jogador[numJogadores];
-    Banca banca = new Banca();
-
     for(int i=0; i<jogadores.length; i++)
     	jogadores[i] = new Jogador(i, bj); 
+
+    Banca banca = new Banca();
     banca.setJogadores(jogadores);
+    
+    BlackJack bj = new BlackJack();
+    for(int i=0; i<jogadores.length; i++)
+    	bj.fazerAposta(jogadores[i]);
+    for(int i=0; i<jogadores.length; i++)
+    	bj.fazerJogada(jogadores[i]);
+   
  	}
 }
