@@ -21,9 +21,11 @@ public class Mao extends ArrayList<Carta>{
 	    if(v==1) ases++;
 		}
 		if((valor<21) & (ases!=0) & ((valor+(ases*10))<=21))
-			return valor+(ases*10);
-		else
+		  valor+=(ases*10);
+		if(valor<=21)
 			return valor;
+		else
+			return -1;
 	}
 	
 	public boolean IsBlackJack(){

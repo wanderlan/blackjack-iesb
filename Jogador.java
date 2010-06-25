@@ -1,15 +1,19 @@
 public class Jogador extends Integrante {
 	private double aposta;
-	private int id;
+	private boolean ativo;
 	private Banca banca;
 
-	public Jogador(int id) {
+	public Jogador() {
 		super();
-		this.id = id;
+		ativo = true;
 	}
 
-	public int getId() {
-		return id;
+	public boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	public void setBanca(Banca banca){
