@@ -18,7 +18,7 @@ public class BlackJack implements UIJogador{
     
     for(int i=0; i<jogadores.length; i++){
 	    while(true){
-		    System.out.println("Faça sua aposta Jogador " + i);
+		    System.out.println("\nFaça sua aposta Jogador " + i);
 				System.out.println("Valor mínimo R$" + minAposta + ", valor máximo R$" + maxAposta);
 		    aposta = sc.nextDouble();
 		    if((aposta>=minAposta)&(aposta<=maxAposta)) 
@@ -31,6 +31,10 @@ public class BlackJack implements UIJogador{
 	}
 	
 	public void fazerJogada(){
+    for(int i=0; i<jogadores.length; i++)
+  		if(jogadores[i].getMao().getValor()==21) return;
+		if(banca.getMao().getValor()==21) return;
+    	
 		Boolean continua=true; 
 		while(continua){
 			continua=false;
@@ -77,10 +81,7 @@ public class BlackJack implements UIJogador{
     for(int i=0; i<jogadores.length; i++){
     	System.out.println("\nCartas do jogador " + i);
     	Mao maoJogador = jogadores[i].getMao();
-    	for(int j=0; j<maoJogador.size(); j++){
-    		System.out.print(maoJogador.get(j).toString());
-    		if(j!=maoJogador.size()-1) System.out.print(", ");
-    	}
+   		System.out.print(maoJogador.mostrar());
   		System.out.println("\nValor da mão: " + maoJogador.getValor());
   		if(maoJogador.IsBlackJack()) System.out.println("***BLACKJACK***");
     }
@@ -92,12 +93,13 @@ public class BlackJack implements UIJogador{
 		try {
 			vencedor = banca.pagarApostas();
 			System.out.println("o jogador " + vencedor);
-			System.out.println("Total da jogador " + vencedor + " R$" + jogadores[vencedor].getTotal());
+			System.out.println("Total do jogador " + vencedor + ": R$" + jogadores[vencedor].getTotal());
 		} catch (BJException e) {
 			System.out.println(e.getMessage());
-			System.out.println("Total da Banca R$" + banca.getTotal());
+			System.out.println("Total da Banca: R$" + banca.getTotal());
 		}
-		System.out.println("Mão da banca: " + banca.getMao().getValor());
+		System.out.println("Mão da Banca: " + banca.getMao().mostrar());
+		System.out.println("Valor da mão da Banca: " + banca.getMao().getValor());
   }
 	
 	public static void main(String[] args) {
@@ -114,8 +116,10 @@ public class BlackJack implements UIJogador{
 	    banca.darCartas();
 	   	bj.mostrarCartas();
 	   	bj.fazerJogada();
-	    if(banca.temAlguemJogando()) 
+	    if(banca.temAlguemJogando()){ 
 	    	bj.pagarApostas();
+	    	System.out.println("\n***PRÓXIMA RODADA***");
+	    }
     }
     System.out.println("FIM DE JOGO");
  	}
