@@ -51,16 +51,23 @@ public class Banca extends Integrante {
 				vencedor=i;
 			}
 		}
-		Mao maoVencedor = jogadores[vencedor].getMao();
-		if(maoVencedor.getValor()>mao.getValor())
-			if(maoVencedor.IsBlackJack())
-				jogadores[vencedor].addTotal(jogadores[vencedor].getAposta()*1.5);
+		if(vencedor!=-1){
+			Mao maoVencedor = jogadores[vencedor].getMao();
+			if(maoVencedor.getValor()>mao.getValor())
+				if(maoVencedor.IsBlackJack())
+					jogadores[vencedor].addTotal(jogadores[vencedor].getAposta()*1.5);
+				else
+					jogadores[vencedor].addTotal(jogadores[vencedor].getAposta());
 			else
-				jogadores[vencedor].addTotal(jogadores[vencedor].getAposta());
-		else{
+				if(maoVencedor.getValor()<mao.getValor()){
+					addTotal(totalApostas);
+					vencedor=-1; // banca
+				}
+				else
+					vencedor=-2; // empate
+		}
+		else
 			addTotal(totalApostas);
-			vencedor=-1;
-		}	
 		return vencedor;  
 	}
 }
