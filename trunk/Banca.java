@@ -2,7 +2,11 @@ public class Banca extends Integrante {
 	private Monte monte = new Monte();
 	private Jogador jogadores[]; 
 	
-  public void iniciarJogada(){
+	public Banca(Jogador jogadores[]){
+		setJogadores(jogadores);
+	}
+	
+	public void iniciarJogada(){
   	mao.clear();
 		for(int j=0; j<jogadores.length; j++)
 			jogadores[j].limparMao();
@@ -35,11 +39,6 @@ public class Banca extends Integrante {
 		for(int i=0; i<jogadores.length; i++)
 			jogadores[i].setBanca(this);
 		this.jogadores = jogadores;
-	}
-
-	public void perguntarAosJogadores() {
-		for(int j=0; j<jogadores.length; j++)
-			jogadores[j].fazerJogada();
 	}
 
 	public void completarJogo() {

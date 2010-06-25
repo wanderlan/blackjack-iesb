@@ -17,8 +17,8 @@ public class Monte {
 
 	public void embaralhar() {
 		Carta temp;
-		for(int i=0, j; i<cartas.length%2; i++){
-			j = (int)Math.round(Math.random()*cartas.length);
+		for(int i=0; i<cartas.length; i++){
+			int j = (int)Math.round(Math.random()*(cartas.length-1));
 			temp=cartas[j];
 			cartas[j]=cartas[i];
 			cartas[i]=temp;
