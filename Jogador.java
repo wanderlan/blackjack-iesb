@@ -3,9 +3,10 @@ public class Jogador extends Integrante {
 	private boolean ativo;
 	private Banca banca;
 
-	public Jogador() {
+	public Jogador(double creditoInicial) {
 		super();
 		ativo = true;
+		total = creditoInicial;
 	}
 
 	public boolean getAtivo() {
@@ -26,6 +27,7 @@ public class Jogador extends Integrante {
 
 	public void setAposta(double aposta) {
 		this.aposta = aposta;
+		total-=aposta;
 	}
 
 	public Carta pedirCarta() {
@@ -42,7 +44,4 @@ public class Jogador extends Integrante {
 
 	}
 
-	public void finalizar() {
-
-	}
 }

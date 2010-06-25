@@ -1,7 +1,7 @@
 public class Monte {
-	private int tamanho=8, c=0;
-	private Baralho baralhos[] = new Baralho[tamanho];
-  private Carta cartas[] = new Carta[tamanho*Baralho.tamanho];
+	private int c=0;
+	private Baralho baralhos[] = new Baralho[BlackJack.numBaralhos];
+  private Carta cartas[] = new Carta[BlackJack.numBaralhos*Baralho.tamanho];
   
 	public Monte() {
 		super();
@@ -24,14 +24,6 @@ public class Monte {
 			cartas[i]=temp;
 		}
 		c=0;
-	}
-
-	public int getTamanho() {
-		return tamanho;
-	}
-
-	public void setTamanho(int tamanho) {
-		this.tamanho = tamanho;
 	}
 
 	public Carta getCarta() {

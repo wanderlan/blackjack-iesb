@@ -2,8 +2,10 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class BlackJack implements UIJogador{
-	final double minAposta=1, maxAposta=100;
-	static final int numJogadores = 1;
+	static double minAposta=1, maxAposta=100;
+	static int numJogadores = 1;
+	static int numBaralhos = 8;
+	static double creditoInicial=1000;
 	private Banca banca;
 	private Jogador[] jogadores;
 	
@@ -21,7 +23,7 @@ public class BlackJack implements UIJogador{
 		    System.out.println("\nFaça sua aposta Jogador " + i);
 				System.out.println("Valor mínimo R$" + minAposta + ", valor máximo R$" + maxAposta);
 		    aposta = sc.nextDouble();
-		    if((aposta>=minAposta)&(aposta<=maxAposta)) 
+		    if((aposta>=minAposta)&(aposta<=maxAposta)&(aposta<=jogadores[i].getTotal())) 
 		    	break;
 		    else
 		    	System.out.println("Aposta inválida, entre um outro valor.");
@@ -101,18 +103,35 @@ public class BlackJack implements UIJogador{
 		}
 		System.out.println("Mão da Banca: " + banca.getMao().mostrar());
 		System.out.println("Valor da mão da Banca: " + banca.getMao().getValorReal());
+		if(banca.getMao().IsBlackJack()) System.out.println("***BLACKJACK***");
   }
 	
+  static public void configurarParametros(){
+    Scanner sc = new Scanner(System.in);
+  	System.out.println("***Configurações Iniciais***");
+		System.out.println("Informe número de jogadores, escolha 1 inicialmente: ");
+    numJogadores = sc.nextInt();
+		System.out.println("Informe valor mínimo da aposta: ");
+    minAposta = sc.nextDouble();
+		System.out.println("Informe valor máximo da aposta: ");
+    maxAposta = sc.nextDouble();
+		System.out.println("Informe número de baralhos, 8 é um número adequado: ");
+    numBaralhos = sc.nextInt();
+		System.out.println("Informe crédito inicial para os jogadores em R$: ");
+    creditoInicial = sc.nextDouble();
+  }
+  
 	public static void main(String[] args) {
+    BlackJack.configurarParametros();   
     Jogador jogadores[] = new Jogador[numJogadores];
   	for(int i=0; i<jogadores.length; i++)
-    	jogadores[i] = new Jogador(); 
+    	jogadores[i] = new Jogador(creditoInicial); 
 
     Banca banca = new Banca(jogadores);
-    
-    BlackJack bj = new BlackJack(banca, jogadores);
-    
-    while(banca.temAlguemJogando()){
+
+  	BlackJack bj = new BlackJack(banca, jogadores);
+  
+  	while(banca.temAlguemJogando()){
       bj.fazerAposta();
 	    banca.darCartas();
 	   	bj.mostrarCartas();
