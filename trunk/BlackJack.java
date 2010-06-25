@@ -38,15 +38,17 @@ public class BlackJack implements UIJogador{
 				System.out.println("(P)edir\n(F)icar\n(D)ividir\n(S)eguro\nF(i)nalizar\n");
 				char c = 'E'; // erro 
 				try{
-					if(jogadores[i].getTotal()==0)
+					/*if(jogadores[i].getTotal()==0)
 						c = 'I';
-					else
+					else*/
 						c = Character.toUpperCase((char)System.in.read());
+					System.in.skip(100);
+					System.out.println("<" +c+">");
 					switch(c){
 				  	case 'P': 
 				  		System.out.println("Nova carta: " + jogadores[i].pedirCarta().toString());
 				  		System.out.println("Valor da mão: " + jogadores[i].getMao().getValor());
-				  		continua=true;
+				  		if(jogadores[i].getMao().getValor()<=21) continua=true;
 				  		break;
 				  	case 'F':
 				  		System.out.println("Valor da mão: " + jogadores[i].getMao().getValor());
@@ -90,8 +92,9 @@ public class BlackJack implements UIJogador{
 		}	
 		else{
 			System.out.println("o jogador " + vencedor);
-			System.out.println("Total da jogador " + vencedor + " R$" + banca.getTotal());
+			System.out.println("Total da jogador " + vencedor + " R$" + jogadores[vencedor].getTotal());
 		}
+		System.out.println("Mão da banca:" + banca.getMao().getValor());
   }
 	
 	public static void main(String[] args) {
