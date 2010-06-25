@@ -1,13 +1,11 @@
 public class Jogador extends Integrante {
 	private double aposta;
 	private double total;
-	private InteracaoJogador ui;
 	private int id;
 	private Banca banca;
 
-	public Jogador(int id, InteracaoJogador ui) {
+	public Jogador(int id) {
 		super();
-		this.ui = ui;
 		this.id = id;
 	}
 
@@ -31,10 +29,6 @@ public class Jogador extends Integrante {
 		mao.clear();
 	}
 
-	public char fazerJogada(){
-		return ui.fazerJogada(this);
-	}
-	
 	public double getAposta() {
 		return aposta;
 	}
