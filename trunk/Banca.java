@@ -1,9 +1,20 @@
 public class Banca extends Integrante {
 	private Monte monte = new Monte();
+	private int jogadoresAtivos = 0;
 	private Jogador jogadores[]; 
 	
 	public Banca(Jogador jogadores[]){
 		setJogadores(jogadores);
+		jogadoresAtivos=jogadores.length;
+	}
+	
+	public void finalizarJogador(int i){
+	  jogadoresAtivos--;
+	  jogadores[i].setAtivo(false);
+	}
+	
+	public boolean temAlguemJogando(){
+		return jogadoresAtivos>0;
 	}
 	
 	public void iniciarJogada(){
@@ -13,10 +24,12 @@ public class Banca extends Integrante {
   }
   
 	public void darCartas() {
+		limparMao();
 		monte.embaralhar();
 		mao.add(monte.getCarta());
 		mao.add(monte.getCarta());
 		for(int j=0; j<jogadores.length; j++){
+			jogadores[j].limparMao();
 			jogadores[j].getMao().add(monte.getCarta());
 			jogadores[j].getMao().add(monte.getCarta());
 		}
@@ -41,12 +54,12 @@ public class Banca extends Integrante {
 		this.jogadores = jogadores;
 	}
 
-	public int pagarApostas() {
+	public int pagarApostas() throws BJException {
 		int max=0, vencedor=-1, totalApostas=0;
 		for(int i=0; i<jogadores.length; i++){
 			totalApostas+=jogadores[i].getAposta();
 			int v = jogadores[i].getMao().getValor();
-			if((v<=21) & (v>max)){
+			if(v>max){
 				max=v;
 				vencedor=i;
 			}
@@ -61,13 +74,18 @@ public class Banca extends Integrante {
 			else
 				if(maoVencedor.getValor()<mao.getValor()){
 					addTotal(totalApostas);
-					vencedor=-1; // banca
+					throw new BJException("A Banca leva tudo"); // banca
 				}
 				else
-					vencedor=-2; // empate
+					throw new BJException("Empate da Banca com o jogador " + vencedor);
 		}
 		else
-			addTotal(totalApostas);
+			if(mao.getValor()!=-1){
+				addTotal(totalApostas);
+				throw new BJException("A Banca leva tudo"); // banca
+			}
+			else
+				throw new BJException("Ninguém ganhou"); // banca
 		return vencedor;  
 	}
 }
