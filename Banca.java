@@ -41,7 +41,26 @@ public class Banca extends Integrante {
 		this.jogadores = jogadores;
 	}
 
-	public void completarJogo() {
-
+	public int pagarApostas() {
+		int max=0, vencedor=-1, totalApostas=0;
+		for(int i=0; i<jogadores.length; i++){
+			totalApostas+=jogadores[i].getAposta();
+			int v = jogadores[i].getMao().getValor();
+			if((v<=21) & (v>max)){
+				max=v;
+				vencedor=i;
+			}
+		}
+		Mao maoVencedor = jogadores[vencedor].getMao();
+		if(maoVencedor.getValor()>mao.getValor())
+			if(maoVencedor.IsBlackJack())
+				jogadores[vencedor].addTotal(jogadores[vencedor].getAposta()*1.5);
+			else
+				jogadores[vencedor].addTotal(jogadores[vencedor].getAposta());
+		else{
+			addTotal(totalApostas);
+			vencedor=-1;
+		}	
+		return vencedor;  
 	}
 }
