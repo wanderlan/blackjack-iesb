@@ -1,6 +1,6 @@
 public class Integrante {
 	protected Mao mao = new Mao();
-	private double total = 0;
+	protected double total = 0;
 
 	public Mao getMao(){
 	  return mao;	

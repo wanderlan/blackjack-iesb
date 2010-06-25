@@ -40,7 +40,7 @@ public class Banca extends Integrante {
 	}
 
 	public void pegarProximaCarta() {
-		if(mao.getValor() < 17) 
+		if(mao.getValorReal() < 17) 
 			mao.add(monte.getCarta());
 	}
 
