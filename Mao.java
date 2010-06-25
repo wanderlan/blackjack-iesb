@@ -31,4 +31,13 @@ public class Mao extends ArrayList<Carta>{
 	public boolean IsBlackJack(){
 		return (size()==2) & (getValor()==21);
 	}
+
+	public String mostrar(){
+		String mostra="";
+		for(int i=0; i<size(); i++){
+			mostra += get(i).toString();
+			if(i!=size()-1) mostra += ", ";
+		}
+		return mostra;
+	}
 }

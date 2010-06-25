@@ -26,7 +26,4 @@ public class Integrante {
 		mao.clear();
 	}
 
-	public void ficar() {
-
-	}
 }
