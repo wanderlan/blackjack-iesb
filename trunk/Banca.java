@@ -39,8 +39,8 @@ public class Banca extends Integrante {
 		return monte.getCarta();
 	}
 
-	public void pegarProximaCarta() {
-		if(mao.getValorReal() < 17) 
+	public void pegarCartas() {
+		while(mao.getValorReal() < 17) 
 			mao.add(monte.getCarta());
 	}
 
@@ -54,15 +54,22 @@ public class Banca extends Integrante {
 		this.jogadores = jogadores;
 	}
 
+	public void debitarApostas(){
+		for(int i=0; i<jogadores.length; i++)
+		  if(jogadores[i].getAtivo())
+		    jogadores[i].addTotal(-jogadores[i].getAposta());
+	}
+	
 	public int pagarApostas() throws BJException {
 		int max=0, vencedor=-1, totalApostas=0;
-		for(int i=0; i<jogadores.length; i++){
-			totalApostas+=jogadores[i].getAposta();
-			int v = jogadores[i].getMao().getValor();
-			if(v>max){
-				max=v;
-				vencedor=i;
-			}
+		for(int i=0; i<jogadores.length; i++)
+		  if(jogadores[i].getAtivo()){
+				totalApostas+=jogadores[i].getAposta();
+				int v = jogadores[i].getMao().getValor();
+				if(v>max){
+					max=v;
+					vencedor=i;
+				}
 		}
 		if(vencedor!=-1){
 			Mao maoVencedor = jogadores[vencedor].getMao();
@@ -74,6 +81,7 @@ public class Banca extends Integrante {
 			else
 				if(maoVencedor.getValor()<mao.getValor()){
 					addTotal(totalApostas);
+					debitarApostas();
 					throw new BJException("A Banca leva tudo"); // banca
 				}
 				else
@@ -82,6 +90,7 @@ public class Banca extends Integrante {
 		else
 			if(mao.getValor()!=-1){
 				addTotal(totalApostas);
+				debitarApostas();
 				throw new BJException("A Banca leva tudo"); // banca
 			}
 			else

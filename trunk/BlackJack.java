@@ -40,7 +40,6 @@ public class BlackJack implements UIJogador{
 		Boolean continua=true; 
 		while(continua){
 			continua=false;
-			banca.pegarProximaCarta();
 	    for(int i=0; i<jogadores.length; i++)
 	      if(jogadores[i].getAtivo()){
 					System.out.println("\nOpções do Jogador " + i);
@@ -75,8 +74,8 @@ public class BlackJack implements UIJogador{
 						e.printStackTrace();
 					}
 		    }
-			if(banca.getMao().getValor()==21) return;
 		}
+		banca.pegarCartas();
 	}
 	
   public void mostrarCartas(){
