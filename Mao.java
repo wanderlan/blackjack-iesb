@@ -13,7 +13,7 @@ public class Mao extends ArrayList<Carta>{
     mao.add(carta);
 	}
 */
-	public int getValor(){
+	public int getValorReal(){
 		int valor=0, ases=0;
 		
 		for(int i=0, v; i<size(); i++){
@@ -22,6 +22,11 @@ public class Mao extends ArrayList<Carta>{
 		}
 		if((valor<21) & (ases!=0) & ((valor+(ases*10))<=21))
 		  valor+=(ases*10);
+		return valor;
+	}
+	
+	public int getValor(){
+		int valor=getValorReal();
 		if(valor<=21)
 			return valor;
 		else

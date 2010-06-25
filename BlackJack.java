@@ -53,11 +53,11 @@ public class BlackJack implements UIJogador{
 						switch(c){
 					  	case 'P': 
 					  		System.out.println("Nova carta: " + jogadores[i].pedirCarta().toString());
-					  		System.out.println("Valor da mão: " + jogadores[i].getMao().getValor());
-					  		if(jogadores[i].getMao().getValor()!=-1) continua=true;
+					  		System.out.println("Valor da mão: " + jogadores[i].getMao().getValorReal());
+					  		if((jogadores[i].getMao().getValor()>0) & (jogadores[i].getMao().getValor()<21)) continua=true;
 					  		break;
 					  	case 'F':
-					  		System.out.println("Valor da mão: " + jogadores[i].getMao().getValor());
+					  		System.out.println("Valor da mão: " + jogadores[i].getMao().getValorReal());
 					  		break;		  		
 					  	case 'D':
 					  		break;
@@ -73,6 +73,7 @@ public class BlackJack implements UIJogador{
 						e.printStackTrace();
 					}
 		    }
+			if(banca.getMao().getValor()==21) return;
 		}
 	}
 	
@@ -82,7 +83,7 @@ public class BlackJack implements UIJogador{
     	System.out.println("\nCartas do jogador " + i);
     	Mao maoJogador = jogadores[i].getMao();
    		System.out.print(maoJogador.mostrar());
-  		System.out.println("\nValor da mão: " + maoJogador.getValor());
+  		System.out.println("\nValor da mão: " + maoJogador.getValorReal());
   		if(maoJogador.IsBlackJack()) System.out.println("***BLACKJACK***");
     }
   }
@@ -99,7 +100,7 @@ public class BlackJack implements UIJogador{
 			System.out.println("Total da Banca: R$" + banca.getTotal());
 		}
 		System.out.println("Mão da Banca: " + banca.getMao().mostrar());
-		System.out.println("Valor da mão da Banca: " + banca.getMao().getValor());
+		System.out.println("Valor da mão da Banca: " + banca.getMao().getValorReal());
   }
 	
 	public static void main(String[] args) {
