@@ -1,8 +1,10 @@
+// Implementa um monte de vários baralhos de cartas 
 public class Monte {
 	private int c=0;
 	private Baralho baralhos[] = new Baralho[BlackJack.numBaralhos];
   private Carta cartas[] = new Carta[BlackJack.numBaralhos*Baralho.tamanho];
   
+  // Cria o monte com o array de baralhos definido
 	public Monte() {
 		super();
 		int k=0;
@@ -15,6 +17,7 @@ public class Monte {
 		}
 	}
 
+	// Embaralha todas as cartas
 	public void embaralhar() {
 		Carta temp;
 		for(int i=0; i<cartas.length; i++){
@@ -26,6 +29,7 @@ public class Monte {
 		c=0;
 	}
 
+	// Devolve a próxima carta do monte
 	public Carta getCarta() {
 		return cartas[c++];
 	}

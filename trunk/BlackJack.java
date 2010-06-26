@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.Scanner;
 
+// Interface caractere do jogo
 public class BlackJack implements UIJogador{
 	static double minAposta=1, maxAposta=100;
 	static int numJogadores = 1;
@@ -14,6 +15,7 @@ public class BlackJack implements UIJogador{
 		this.jogadores = jogadores;
 	}
 	
+	// Pede a aposta para cada
 	public void fazerAposta(){
     Scanner sc = new Scanner(System.in);
     double aposta;
@@ -46,9 +48,9 @@ public class BlackJack implements UIJogador{
 					System.out.println("(P)edir\n(F)icar\n(D)ividir\n(S)eguro\nF(i)nalizar");
 					char c = 'E'; // erro 
 					try{
-						/*if(jogadores[i].getTotal()==0)
+						if(jogadores[i].getTotal()==0)
 							c = 'I';
-						else*/
+						else
 							c = Character.toUpperCase((char)System.in.read());
 						System.in.skip(100);
 						switch(c){
@@ -61,8 +63,10 @@ public class BlackJack implements UIJogador{
 					  		System.out.println("Valor da mão: " + jogadores[i].getMao().getValorReal());
 					  		break;		  		
 					  	case 'D':
+					    	System.out.println("Funcionalidade não implementada.");
 					  		break;
 					  	case 'S':
+					    	System.out.println("Funcionalidade não implementada.");
 					  		break;
 					  	case 'I':
 					  		System.out.println("Obrigado por participar Jogador: " + i);
