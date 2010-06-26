@@ -1,3 +1,9 @@
+/* Autores
+ Bárbara A.B. dos Anjos - 0822130046
+ Gabriel Artur Cunha Maciel - 0822130001
+ Wanderlan Santos dos Anjos - 0822130045
+*/
+
 import java.io.IOException;
 import java.util.Scanner;
 
