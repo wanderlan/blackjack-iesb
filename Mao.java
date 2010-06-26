@@ -3,16 +3,7 @@ import java.util.ArrayList;
 public class Mao extends ArrayList<Carta>{
 	private static final long serialVersionUID = 1L;
 
-/*	private ArrayList<Carta> mao = new ArrayList<Carta>();
-	
-	public void add(Carta carta) {
-    mao.add(carta);
-	}
-
-	public void add(Carta carta) {
-    mao.add(carta);
-	}
-*/
+	// Devolve o valor da mão
 	public int getValorReal(){
 		int valor=0, ases=0;
 		
@@ -25,6 +16,7 @@ public class Mao extends ArrayList<Carta>{
 		return valor;
 	}
 	
+	// Devolve o valor da mão, mas se o valor for maior que 21 devolve -1
 	public int getValor(){
 		int valor=getValorReal();
 		if(valor<=21)
@@ -33,10 +25,12 @@ public class Mao extends ArrayList<Carta>{
 			return -1;
 	}
 	
+	// Devolve se a mão tem um BlackJack
 	public boolean IsBlackJack(){
 		return (size()==2) & (getValor()==21);
 	}
 
+	// Devolve um string com as cartas da mão
 	public String mostrar(){
 		String mostra="";
 		for(int i=0; i<size(); i++){
